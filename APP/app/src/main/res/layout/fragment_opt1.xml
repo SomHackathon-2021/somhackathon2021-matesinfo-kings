@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    tools:context=".FragmentOpt1">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -13,5 +13,11 @@
         android:textSize="50sp"
         android:textStyle="bold"
         android:gravity="center"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OPT1" />
 
 </FrameLayout>

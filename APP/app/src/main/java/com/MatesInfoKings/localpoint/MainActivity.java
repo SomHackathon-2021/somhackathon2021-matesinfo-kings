@@ -12,7 +12,6 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,24 +29,24 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
 
         ArrayList<String> arrayList = new ArrayList<>();
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
 
         arrayList.add("Bescanviar");
         arrayList.add("Historial");
         arrayList.add("Locals");
 
-        prepareViewPager(viewPager,arrayList);
+        fragmentList.add(new FragmentOpt1());
+        fragmentList.add(new FragmentOpt2());
+        fragmentList.add(new FragmentOpt3());
+
+        prepareViewPager(viewPager,arrayList,fragmentList);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList) {
+    private void prepareViewPager(ViewPager viewPager, ArrayList<String> arrayList, ArrayList<Fragment> fragmentList) {
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
-        MainFragment fragment = new MainFragment();
         for (int i=0; i<arrayList.size(); i++){
-            Bundle bundle = new Bundle();
-            bundle.putString("title",arrayList.get(i));
-            fragment.setArguments(bundle);
-            adapter.addFragment(fragment,arrayList.get(i));
-            fragment = new MainFragment();
+            adapter.addFragment(fragmentList.get(i),arrayList.get(i));
         }
         viewPager.setAdapter(adapter);
     }
@@ -55,16 +54,15 @@ public class MainActivity extends AppCompatActivity {
     private class MainAdapter extends FragmentPagerAdapter {
 
         ArrayList<String> arrayList = new ArrayList<>();
-        List<Fragment> fragmentList = new ArrayList<>();
+        ArrayList<Fragment> fragmentList = new ArrayList<>();
+
 
         public void addFragment(Fragment fragment, String title){
             arrayList.add(title);
             fragmentList.add(fragment);
         }
 
-        public MainAdapter(@NonNull FragmentManager fm) {
-            super(fm);
-        }
+        public MainAdapter(@NonNull FragmentManager fm) {super(fm); }
 
         @NonNull
         @Override

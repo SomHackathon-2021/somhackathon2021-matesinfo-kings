@@ -15,6 +15,7 @@
         app:tabIndicatorColor="@android:color/holo_green_light"
         app:tabSelectedTextColor="@android:color/holo_green_light"
         android:background="@color/colorPrimary"/>
+
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
