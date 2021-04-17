@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(
                         MainActivity.this
                 );
-                intentIntegrator.setPrompt("For flash use volume up key");
+                intentIntegrator.setPrompt("Per activar el flash pugeu el volum");
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
@@ -87,7 +87,13 @@ public class MainActivity extends AppCompatActivity {
             );
             builder.setTitle("Resultat Escanejat");
             String resultat = intentResult.getContents();
-            builder.setMessage(resultat);
+            int nous_punts = Integer.parseInt(resultat.substring(resultat.length()-3));
+            points += nous_punts;
+
+            String newText = String.valueOf(points) + "\nPunts";
+            nPoints.setText(newText);
+
+            builder.setMessage("Has aconseguit " + String.valueOf(nous_punts) + " punts! Felicitats!!!");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int which) {
@@ -139,7 +145,4 @@ public class MainActivity extends AppCompatActivity {
             return arrayList.get(position);
         }
     }
-
-
-
 }
