@@ -1,24 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    >
 
-    <com.google.android.material.tabs.TabLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tab_layout"
-        app:tabTextColor="@android:color/black"
-        app:tabIndicatorColor="@android:color/holo_green_light"
-        app:tabSelectedTextColor="@android:color/holo_green_light"
-        android:background="@color/colorPrimary"/>
+        android:src="@drawable/botiga"
+        android:adjustViewBounds="true"
+        />
 
-    <androidx.viewpager.widget.ViewPager
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager"/>
+        android:orientation="vertical"
+        tools:context=".MainActivity"
+        >
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n"
+            android:textSize="10pt"/>
+
+        <TextView
+            android:id="@+id/textPoints"
+            android:layout_width="250dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:text="\nPunts"
+            android:textSize="10pt"
+            app:tabTextColor="@android:color/black" />
+
+        <Button
+            android:id="@+id/btScan"
+            android:layout_width="126dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:text="Escanejar QR" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab_layout"
+            app:tabTextColor="@android:color/black"
+            app:tabIndicatorColor="@android:color/holo_green_light"
+            app:tabSelectedTextColor="@android:color/holo_green_light"
+            android:background="@color/colorPrimary"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/view_pager"/>
+
+    </LinearLayout>
+</RelativeLayout>
