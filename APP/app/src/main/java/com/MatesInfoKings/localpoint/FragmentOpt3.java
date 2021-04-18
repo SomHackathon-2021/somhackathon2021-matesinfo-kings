@@ -52,13 +52,10 @@ public class FragmentOpt3 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         LocalsData[] localsData = new LocalsData[]{
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("El Pí Supernercat Ecològic","Carrer de Cuba, 41",R.drawable.pi,"Compra de podructes\nEstalvi de Plàstic\nProductes de Temporada"),
+                new LocalsData("Casa Moreno","Plaça de Catalunya",R.drawable.montero,"Compra de podructes\nEstalvi de Porexpan i Plàstic\n"),
+                new LocalsData("La Confianza Mataró","Sant Cristòfol, 10",R.drawable.confianza,"Compra de podructes\nRetornar Ampolles o Aliments\n"),
+                new LocalsData("Can Margarida-Horta","Carrer Santa Maria, 9",R.drawable.eco,"Compra de podructes\nEstalvi de Plàstic\nroductes de Temporada"),
         };
 
         LocalsAdapter localsAdapter = new LocalsAdapter(localsData,(MainActivity)getActivity());

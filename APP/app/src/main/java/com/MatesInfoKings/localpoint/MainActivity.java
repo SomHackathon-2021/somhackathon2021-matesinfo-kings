@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
 
-        loadData();
-        updateView();
+        //loadData();
+        //updateView();
 
         btScan = findViewById(R.id.btScan);
 
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateView(){
-        //nPoints.setText(points);
-        //historial.setTextView(HISTORIAL, viewPager);
+        nPoints.setText(points);
+        historial.setTextView(HISTORIAL, viewPager);
     }
 }
