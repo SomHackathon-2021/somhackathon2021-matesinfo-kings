@@ -9,22 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentOpt2#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentOpt2 extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public FragmentOpt2() {
         // Required empty public constructor
     }
@@ -32,8 +17,6 @@ public class FragmentOpt2 extends Fragment {
     public static FragmentOpt2 newInstance(String param1, String param2) {
         FragmentOpt2 fragment = new FragmentOpt2();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,10 +24,6 @@ public class FragmentOpt2 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -53,5 +32,21 @@ public class FragmentOpt2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_opt2, container, false);
 
         return view;
+    }
+
+    public void updateHistory(String s2, View view){
+        TextView textView = view.findViewById(R.id.tv_history);
+        String s1 = (String)textView.getText();
+        textView.setText(s2+"\n"+s1);
+    }
+
+    public TextView getTextView(View view){
+        TextView textView = view.findViewById(R.id.tv_history);
+        return textView;
+    }
+
+    public void setTextView(String s, View view){
+        TextView textView = view.findViewById(R.id.tv_history);
+        textView.setText(s);
     }
 }

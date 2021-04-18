@@ -52,13 +52,13 @@ public class FragmentOpt3 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         LocalsData[] localsData = new LocalsData[]{
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
-                new LocalsData("Titol","Subtitol",R.drawable.botiga),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
+                new LocalsData("Titol","Subtitol",R.drawable.botiga,"opcioA\nopcioB\nopcioC"),
         };
 
         LocalsAdapter localsAdapter = new LocalsAdapter(localsData,(MainActivity)getActivity());

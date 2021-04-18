@@ -4,12 +4,14 @@ public class LocalsData {
 
     private String LocalsName;
     private String LocalsSubname;
+    private String LocalsOpcions;
     private Integer LocalsImage;
 
-    public LocalsData(String localsName, String localsSubname, Integer localsImage) {
+    public LocalsData(String localsName, String localsSubname, Integer localsImage, String opcions) {
         LocalsName = localsName;
         LocalsSubname = localsSubname;
         LocalsImage = localsImage;
+        LocalsOpcions = opcions;
     }
 
     public String getBescanviarName() {
@@ -34,5 +36,13 @@ public class LocalsData {
 
     public void setBescanviarImage(Integer bescanviarImage) {
         LocalsImage = bescanviarImage;
+    }
+
+    public String getOpcions() {
+        return LocalsOpcions;
+    }
+
+    public void setOpcions(String opcions) {
+        LocalsOpcions = opcions;
     }
 }

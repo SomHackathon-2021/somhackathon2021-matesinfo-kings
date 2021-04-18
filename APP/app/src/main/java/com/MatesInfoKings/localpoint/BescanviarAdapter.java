@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BescanviarAdapter extends RecyclerView.Adapter<BescanviarAdapter.ViewHolder>{
 
     BescanviarData[] bescanviarData;
-    Context context;
+    MainActivity context;
 
     public BescanviarAdapter(BescanviarData[] bescanviarData, MainActivity activity) {
         this.bescanviarData = bescanviarData;
@@ -42,20 +42,29 @@ public class BescanviarAdapter extends RecyclerView.Adapter<BescanviarAdapter.Vi
         holder.BescanviarPreu.setText(bescanviarDataList.getBescanviarPreu() + "\nPUNTS");
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(
-                    context
-            );
-            //builder.setTitle("Resultat Escanejat");
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             @Override
             public void onClick(View v) {
-                //builder.setMessage("Vols bescanviar " + bescanviarDataList.getBescanviar);
-                builder.setMessage("Hello");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                builder.setTitle("Alerta!!");
+                builder.setMessage("Vols bescanviar " + bescanviarDataList.getBescanviarPreu() + " punts a canvi de " + bescanviarDataList.getBescanviarName() + "?");
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         dialogInterface.dismiss();
                     }
                 });
+                builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        if (context.getPoints() < Integer.parseInt(bescanviarDataList.getBescanviarPreu())){
+                            Toast.makeText(context,"No tens suficients punts", Toast.LENGTH_SHORT).show();
+                        }else{
+                            context.subPoints(Integer.parseInt(bescanviarDataList.getBescanviarPreu()));
+                        }
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
             }
         });
     }

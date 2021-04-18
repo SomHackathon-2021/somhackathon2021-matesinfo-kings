@@ -1,6 +1,7 @@
 package com.MatesInfoKings.localpoint;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LocalsAdapter extends RecyclerView.Adapter<LocalsAdapter.ViewHolder>{
 
     LocalsData[] localsData;
-    Context context;
+    MainActivity context;
 
     public LocalsAdapter(LocalsData[] localsData, MainActivity activity) {
         this.localsData = localsData;
@@ -28,7 +34,6 @@ public class LocalsAdapter extends RecyclerView.Adapter<LocalsAdapter.ViewHolder
         View view = layoutInflater.inflate(R.layout.item_layout,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
 
-
         return viewHolder;
     }
 
@@ -40,9 +45,19 @@ public class LocalsAdapter extends RecyclerView.Adapter<LocalsAdapter.ViewHolder
         holder.LocalsImage.setImageResource(localsDataList.getBescanviarImage());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,localsDataList.getBescanviarName(), Toast.LENGTH_LONG).show();
+
+                builder.setTitle("Formes de conseguir punts en el local:");
+                builder.setMessage(localsDataList.getOpcions());
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
             }
         });
     }

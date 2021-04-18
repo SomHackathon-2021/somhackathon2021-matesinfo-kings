@@ -11,10 +11,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +22,11 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TextView nPoints;
     Button btScan;
-    private int points = 20;
+
+    FragmentOpt2 historial;
+    private static int points = 20;
+
+    public static String SHARED_PREFS = "sharedPrefs";
+    public static String HISTORIAL_STRING = new String();
+    public static String HISTORIAL = new String();
+    public static String POINTS_STRING = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         nPoints = findViewById(R.id.textPoints);
         String newText = String.valueOf(points) + nPoints.getText();
         nPoints.setText(newText);
+
+        historial = new FragmentOpt2();
+
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager = findViewById(R.id.view_pager);
+
+        loadData();
+        updateView();
+
         btScan = findViewById(R.id.btScan);
 
         btScan.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 intentIntegrator.initiateScan();
             }
         });
-
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager = findViewById(R.id.view_pager);
 
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayList<Fragment> fragmentList = new ArrayList<>();
@@ -92,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             String newText = String.valueOf(points) + "\nPunts";
             nPoints.setText(newText);
-
+            saveData();
             builder.setMessage("Has aconseguit " + String.valueOf(nous_punts) + " punts! Felicitats!!!");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
@@ -101,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             builder.show();
+
+            Date date = Calendar.getInstance().getTime();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+            String strDate = dateFormat.format(date);
+            historial.updateHistory(strDate+" Has conseguit " + String.valueOf(nous_punts) + " punts",viewPager);
+
         }else{
             Toast.makeText(getApplicationContext(),
                     "OOPS... No has escanejat res", Toast.LENGTH_LONG)
@@ -144,5 +166,41 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return arrayList.get(position);
         }
+    }
+
+    public int getPoints(){
+        return points;
+    }
+
+    public void subPoints(int pointsToSub){
+        points -= pointsToSub;
+        String newText = String.valueOf(points) + "\nPunts";
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        historial.updateHistory(strDate+" Has gastat " + String.valueOf(pointsToSub) + " punts",viewPager);
+        nPoints.setText(newText);
+        saveData();
+    }
+
+    public void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(HISTORIAL_STRING, (historial.getTextView(viewPager).getText()).toString());
+        editor.putInt(POINTS_STRING, points);
+        editor.apply();
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        points = sharedPreferences.getInt(POINTS_STRING, 0);
+        HISTORIAL = sharedPreferences.getString(HISTORIAL_STRING,"");
+    }
+
+    public void updateView(){
+        //nPoints.setText(points);
+        //historial.setTextView(HISTORIAL, viewPager);
     }
 }
