@@ -52,13 +52,11 @@ public class FragmentOpt1 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         BescanviarData[] bescanviarData = new BescanviarData[]{
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
-                new BescanviarData("Titol","Subtitol",R.drawable.botiga,"10"),
+                new BescanviarData("Bossa de Tela","Reutilitzable",R.drawable.bosa,"40"),
+                new BescanviarData("Entrada Museu","Can Serra",R.drawable.museu,"50"),
+                new BescanviarData("Sopar Comú","1r dll / mes",R.drawable.cena,"70"),
+                new BescanviarData("T10","Abonament T.P",R.drawable.t10,"80"),
+                new BescanviarData("Carrito","Carro Compra",R.drawable.carrito,"100"),
         };
 
         BescanviarAdapter bescanviarAdapter = new BescanviarAdapter(bescanviarData,(MainActivity)getActivity());

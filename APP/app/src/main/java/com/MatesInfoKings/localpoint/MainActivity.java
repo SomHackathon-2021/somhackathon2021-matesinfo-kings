@@ -35,13 +35,14 @@ public class MainActivity extends AppCompatActivity {
     TextView nPoints;
     Button btScan;
 
-    FragmentOpt2 historial;
-    private static int points = 20;
+    private static FragmentOpt2 historial;
+    private static int points;
 
-    public static String SHARED_PREFS = "sharedPrefs";
-    public static String HISTORIAL_STRING = new String();
-    public static String HISTORIAL = new String();
-    public static String POINTS_STRING = new String();
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String HISTORIAL_STRING = "historial";
+    public static String HISTORIAL = "";
+    public static final String POINTS_STRING = "punts";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
-
-        //loadData();
-        //updateView();
 
         btScan = findViewById(R.id.btScan);
 
@@ -89,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
         prepareViewPager(viewPager,arrayList,fragmentList);
         tabLayout.setupWithViewPager(viewPager);
+
+        loadData();
+        updateView();
     }
 
     @Override
@@ -189,18 +190,22 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(HISTORIAL_STRING, (historial.getTextView(viewPager).getText()).toString());
-        editor.putInt(POINTS_STRING, points);
+        editor.putString(POINTS_STRING, String.valueOf(points));
         editor.apply();
     }
 
     public void loadData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        points = sharedPreferences.getInt(POINTS_STRING, 0);
+        points = Integer.parseInt(sharedPreferences.getString(POINTS_STRING,"0"));
         HISTORIAL = sharedPreferences.getString(HISTORIAL_STRING,"");
     }
 
     public void updateView(){
-        nPoints.setText(points);
-        historial.setTextView(HISTORIAL, viewPager);
+        nPoints.setText(String.valueOf(points) + "\nPunts");
     }
+
+    public String getHistorial(){
+        return HISTORIAL;
+    }
+
 }

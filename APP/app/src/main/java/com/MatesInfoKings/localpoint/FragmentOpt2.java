@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class FragmentOpt2 extends Fragment {
+
     public FragmentOpt2() {
         // Required empty public constructor
     }
@@ -31,6 +32,9 @@ public class FragmentOpt2 extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_opt2, container, false);
 
+        TextView textView = (TextView) view.findViewById(R.id.tv_history);
+        textView.setText(((MainActivity)getActivity()).getHistorial());
+
         return view;
     }
 
@@ -46,7 +50,7 @@ public class FragmentOpt2 extends Fragment {
     }
 
     public void setTextView(String s, View view){
-        TextView textView = view.findViewById(R.id.tv_history);
-        textView.setText(s);
+        TextView textView = (TextView) view.findViewById(R.id.tv_history);
+        textView.setText("hola");
     }
 }
