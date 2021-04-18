@@ -206,5 +206,4 @@ public class MainActivity extends AppCompatActivity {
     public String getHistorial(){
         return HISTORIAL;
     }
-
 }
