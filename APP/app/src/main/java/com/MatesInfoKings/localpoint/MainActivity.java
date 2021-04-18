@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     public static String HISTORIAL = "";
     public static final String POINTS_STRING = "punts";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
